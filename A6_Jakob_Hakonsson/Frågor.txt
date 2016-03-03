@@ -1,0 +1,14 @@
+Frågor
+1.	Mellan Malmö C och Lund C.
+
+2.	I slutet av adressen ska följande läggas till: NoOf=5, så att hela adressen lyder:
+	?cmdaction=next&selPointFr=0|80000|0&selPointTo=0|81216|0&NoOf=5
+
+3.	<Journeys> är huvudparametrarna och beskriver allt; priser, tider förseningar osv.
+	<Journey> är för en specifik resa. 
+	<Routelink> innehåller all info om <Routelinks>.
+	<Routelinks> är de mer specifika tiderna, priserna, avvikelserna, osv.
+
+4.	NoOfChanges, placerad under <Journey>.
+
+5.	<CatGame>
