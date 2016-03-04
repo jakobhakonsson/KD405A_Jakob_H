@@ -108,7 +108,7 @@ public class HouseGUI extends JFrame {
 			
 			hundredHouses.add(new House(random.nextInt(215) + 1800, random.nextInt(1000)));
 		}
-1
+
 		// Print out the size and build year of the houses
 		// in the console and in the text area on the GUI
 		

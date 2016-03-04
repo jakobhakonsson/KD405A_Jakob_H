@@ -24,6 +24,8 @@ public class ClockLogic {
 	}
 
 	public void clearAlarm() {
+		setAlarm(-1, -1);
+		ClockGUI.activateAlarm(false);
 	}
 
 	public void checkAlarmTime(int hour, int minute) {
@@ -42,10 +44,12 @@ public class ClockLogic {
 
 				try {
 					Thread.sleep(1000);
-				} catch (InterruptedException e) {
+				} catch (InterruptedException e){
 				}
+				
 				System.out.println("Starting");
 				Calendar cal = Calendar.getInstance();
+				
 				if (ClockGUI.isAlarm()) {
 					ClockGUI.checkAlarm(cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE));
 					System.out.println("waiting for alarm");
@@ -54,9 +58,15 @@ public class ClockLogic {
 				int second = cal.get(Calendar.SECOND);
 				int minute = cal.get(Calendar.MINUTE);
 				int hour = cal.get(Calendar.HOUR_OF_DAY);
+				
 				ClockGUI.setTimeOnLabel(
 						timeFormat.format(hour) + ":" + timeFormat.format(minute) + ":" + timeFormat.format(second));
-
+				
+				if (hour == alarmHour && minute == alarmMinute) {
+					ClockGUI.activateAlarm(true);
+				} else {
+					ClockGUI.activateAlarm(false);
+				}
 			}
 		}
 	}

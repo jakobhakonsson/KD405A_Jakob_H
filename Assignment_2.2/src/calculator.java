@@ -46,9 +46,13 @@ public class calculator {
 	}
 
 	public void equals() {
-		this.result = this.operand;
-		this.operand = 0;
-		this.operator = "=";
-	}
+		if (operator.equals("+")) {
+			result = result + operand;
 
+		} else if (operator.equals("-")) {
+			result = result - operand;
+
+			operand = 0;
+		}
+	}
 }
