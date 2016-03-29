@@ -1,8 +1,4 @@
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.text.DateFormat;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class ClockLogic {
@@ -20,7 +16,7 @@ public class ClockLogic {
 		this.alarmHour = hour;
 		this.alarmMinute = minute;
 
-		System.out.println("alarmset");
+		// System.out.println("alarmset");
 	}
 
 	public void clearAlarm() {
@@ -35,37 +31,38 @@ public class ClockLogic {
 		}
 	}
 
-	public class ClockThread extends Thread {
+	private class ClockThread extends Thread {
 
 		@Override
 		public void run() {
-			DecimalFormat timeFormat = new DecimalFormat("00");
 			while (true) {
+				// System.out.println("Starting");
 
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e){
-				}
-				
-				System.out.println("Starting");
 				Calendar cal = Calendar.getInstance();
-				
-				if (ClockGUI.isAlarm()) {
-					ClockGUI.checkAlarm(cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE));
-					System.out.println("waiting for alarm");
-				}
-
 				int second = cal.get(Calendar.SECOND);
 				int minute = cal.get(Calendar.MINUTE);
 				int hour = cal.get(Calendar.HOUR_OF_DAY);
-				
+
+				DecimalFormat timeFormat = new DecimalFormat("00");
 				ClockGUI.setTimeOnLabel(
 						timeFormat.format(hour) + ":" + timeFormat.format(minute) + ":" + timeFormat.format(second));
-				
+
+			//	if (ClockGUI.isAlarm()) {
+			//		ClockGUI.checkAlarm(cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE));
+			//		System.out.println("waiting for alarm");
+			//	}
+
 				if (hour == alarmHour && minute == alarmMinute) {
 					ClockGUI.activateAlarm(true);
 				} else {
 					ClockGUI.activateAlarm(false);
+				}
+				
+				try {
+					Thread.sleep(900);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+					return;
 				}
 			}
 		}

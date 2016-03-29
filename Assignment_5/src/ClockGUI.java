@@ -8,9 +8,11 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.text.DecimalFormat;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 
 public class ClockGUI extends JFrame {
@@ -48,17 +50,22 @@ public class ClockGUI extends JFrame {
 	 */
 	public ClockGUI() {
 		
+		setTitle("alarm clock program");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ClockGUI.class.getResource("/icon/Spider-Man.jpg")));
+
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 761, 494);
+		setBounds(100, 100, 824, 611);
 		contentPane = new JPanel();
+		contentPane.setForeground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		contentPane.setLayout(null);
 		
 		photoLabel = new JLabel("");
-		photoLabel.setIcon(new ImageIcon("/Users/Jakob/Documents/GitHub/KD405A_Jakob_H/Assignment_5/src/hallstatt-night-with-church.jpg"));
-		photoLabel.setBounds(15, 179, 491, 250);
+		photoLabel.setIcon(new ImageIcon("C:\\Users\\Jakob\\Documents\\GitHub\\KD405A_Jakob_H\\Assignment_5\\src\\hallstatt-night-with-church.jpg"));
+		photoLabel.setBounds(10, 141, 633, 410);
 		contentPane.add(photoLabel);
 		
 		hourField = new JTextField();
@@ -114,12 +121,12 @@ public class ClockGUI extends JFrame {
 		
 		alarmLabel = new JLabel("");
 		alarmLabel.setFont(new Font("Myriad Pro", Font.PLAIN, 18));
-		alarmLabel.setBounds(410, 102, 138, 38);
+		alarmLabel.setBounds(410, 102, 237, 38);
 		contentPane.add(alarmLabel);
 		
 		alarmMessageLabel = new JLabel("");
 		alarmMessageLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		alarmMessageLabel.setBounds(410, 140, 138, 26);
+		alarmMessageLabel.setBounds(593, 106, 138, 29);
 		contentPane.add(alarmMessageLabel);
 		
 		clockLogic = new ClockLogic(this);
