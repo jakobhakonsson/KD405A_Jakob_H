@@ -1,4 +1,8 @@
 import java.awt.EventQueue;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,6 +17,7 @@ import java.text.DecimalFormat;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import javax.swing.SwingConstants;
 
 
 public class ClockGUI extends JFrame {
@@ -28,6 +33,7 @@ public class ClockGUI extends JFrame {
 	private JLabel alarmMessageLabel;
 	private JLabel photoLabel;
 	DecimalFormat timeFormat = new DecimalFormat("00");
+	private JLabel lblAlarmMessage;
 
 	/**
 	 * Launch the application.
@@ -44,18 +50,40 @@ public class ClockGUI extends JFrame {
 			}
 		});
 	}
+	
+	public void setTimeOnLabel(String AlarmTime) {
+		// TODO Auto-generated method stub
+		alarmLabel.setText(AlarmTime);
+	}
+
+	public void isAlarm(boolean activate) {
+		if (activate)
+		{
+			lblAlarmset.setText("ALARM");
+		}else{lblAlarmset.setText("");
+		}
+	}
+
+	public void checkAlarm(int hour, int minute) {
+		// clockLogic.checkAlarmTime(hour, minute);
+	}
+
+	public void Alarm() {
+		lblAlarmset.setText("ALARM");
+	}
+	
 
 	/**
 	 * Create the frame.
 	 */
 	public ClockGUI() {
 		
-		setTitle("alarm clock program");
+		setTitle("Alarmclock program");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ClockGUI.class.getResource("/icon/Spider-Man.jpg")));
 
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 824, 611);
+		setBounds(100, 100, 357, 305);
 		contentPane = new JPanel();
 		contentPane.setForeground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -63,27 +91,23 @@ public class ClockGUI extends JFrame {
 		contentPane.setLayout(null);
 		contentPane.setLayout(null);
 		
-		photoLabel = new JLabel("");
-		photoLabel.setIcon(new ImageIcon("C:\\Users\\Jakob\\Documents\\GitHub\\KD405A_Jakob_H\\Assignment_5\\src\\hallstatt-night-with-church.jpg"));
-		photoLabel.setBounds(10, 141, 633, 410);
-		contentPane.add(photoLabel);
 		
 		hourField = new JTextField();
-		hourField.setBounds(47, 102, 69, 26);
+		hourField.setBounds(67, 103, 69, 26);
 		contentPane.add(hourField);
 		hourField.setColumns(10);
 		
 		minuteField = new JTextField();
-		minuteField.setBounds(185, 103, 69, 26);
+		minuteField.setBounds(67, 153, 69, 26);
 		contentPane.add(minuteField);
 		minuteField.setColumns(10);
 		
 		JLabel lblHour = new JLabel("Hour:");
-		lblHour.setBounds(0, 106, 43, 16);
+		lblHour.setBounds(12, 108, 43, 16);
 		contentPane.add(lblHour);
 		
 		JLabel lblMinute = new JLabel("Minute:");
-		lblMinute.setBounds(129, 108, 61, 16);
+		lblMinute.setBounds(12, 158, 61, 16);
 		contentPane.add(lblMinute);
 		
 		JButton btnSetAlarm = new JButton("Set Alarm");
@@ -98,35 +122,36 @@ public class ClockGUI extends JFrame {
 				alarmLabel.setText("Alarm set at: " + hourField.getText() + ":" + minuteField.getText());
 			}
 		});
-		btnSetAlarm.setBounds(273, 102, 117, 29);
+		btnSetAlarm.setBounds(177, 102, 117, 29);
 		contentPane.add(btnSetAlarm);
 		
 		JButton btnClearAlarm = new JButton("Clear Alarm");
 		btnClearAlarm.addActionListener(new ActionListener() {
 			
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent arg0) {
 				clockLogic.clearAlarm();
 				alarmLabel.setText("");
 				hourField.setText("");
 				minuteField.setText("");
 			}
 		});
-		btnClearAlarm.setBounds(129, 51, 117, 29);
+		btnClearAlarm.setBounds(177, 152, 117, 29);
 		contentPane.add(btnClearAlarm);
 		
 		clockLabel = new JLabel("");
 		clockLabel.setFont(new Font("Myriad Pro", Font.PLAIN, 25));
-		clockLabel.setBounds(410, 22, 138, 52);
+		clockLabel.setBounds(90, 25, 138, 52);
 		contentPane.add(clockLabel);
 		
 		alarmLabel = new JLabel("");
-		alarmLabel.setFont(new Font("Myriad Pro", Font.PLAIN, 18));
-		alarmLabel.setBounds(410, 102, 237, 38);
+		alarmLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		alarmLabel.setFont(new Font("Ebrima", Font.PLAIN, 25));
+		alarmLabel.setBounds(12, 38, 282, 38);
 		contentPane.add(alarmLabel);
 		
 		alarmMessageLabel = new JLabel("");
 		alarmMessageLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		alarmMessageLabel.setBounds(593, 106, 138, 29);
+		alarmMessageLabel.setBounds(90, 229, 138, 29);
 		contentPane.add(alarmMessageLabel);
 		
 		clockLogic = new ClockLogic(this);
@@ -145,22 +170,7 @@ public class ClockGUI extends JFrame {
 		}
 	}
 	
-	public void setTimeOnLabel(String AlarmTime) {
-		// TODO Auto-generated method stub
-		alarmLabel.setText(AlarmTime);
-	}
 
-	public boolean isAlarm() {
-		return alarmSet;
-	}
-
-	public void checkAlarm(int hour, int minute) {
-		// clockLogic.checkAlarmTime(hour, minute);
-	}
-
-	public void Alarm() {
-		lblAlarmset.setText("ALARM");
-	}
 
 
 	
